@@ -1,0 +1,14 @@
+
+.hero-section {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.bg-primary {
+    background-color: #007bff !important;
+}
+.text-white {
+    color: #fff !important;
+}
