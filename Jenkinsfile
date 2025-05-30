@@ -3,10 +3,11 @@ pipeline {
 
     environment {
         REMOTE_USER = 'ubuntu'
-        REMOTE_IP = '15.207.183.246' // <-- Your EC2 IP
-        REMOTE_PATH = '/var/www/html/'
-        PRIVATE_KEY = '~/.ssh/id_rsa'
-        S3_BUCKET = 'online-education-platform-1' // <-- Your bucket name
+        REMOTE_IP = '15.207.183.246'           // Your EC2 IP
+        REMOTE_TEMP_PATH = '/home/ubuntu/'     // Temporary upload path
+        REMOTE_DEPLOY_PATH = '/var/www/html/'  // Final deploy path
+        PRIVATE_KEY = '~/.ssh/id_rsa'           // Jenkins private key path
+        S3_BUCKET = 'online-education-platform-1'  // Your S3 bucket name
     }
 
     stages {
@@ -19,8 +20,11 @@ pipeline {
         stage('Deploy to EC2') {
             steps {
                 sh '''
-                echo "Copying index.html to EC2 instance"
-                scp -o StrictHostKeyChecking=no -i $PRIVATE_KEY index.html $REMOTE_USER@$REMOTE_IP:$REMOTE_PATH
+                echo "Copying index.html to EC2 instance temporary folder"
+                scp -o StrictHostKeyChecking=no -i $PRIVATE_KEY index.html $REMOTE_USER@$REMOTE_IP:$REMOTE_TEMP_PATH
+
+                echo "Moving index.html to /var/www/html/ with sudo"
+                ssh -o StrictHostKeyChecking=no -i $PRIVATE_KEY $REMOTE_USER@$REMOTE_IP "sudo mv ${REMOTE_TEMP_PATH}index.html ${REMOTE_DEPLOY_PATH} && sudo chown www-data:www-data ${REMOTE_DEPLOY_PATH}index.html"
                 '''
             }
         }
