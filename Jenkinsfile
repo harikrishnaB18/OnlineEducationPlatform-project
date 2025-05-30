@@ -32,8 +32,8 @@ pipeline {
         stage('Upload to S3') {
             steps {
                 sh '''
-                echo "Uploading index.html to S3"
-                aws s3 cp index.html s3://$S3_BUCKET/index.html --acl public-read
+                echo "Uploading index.html to S3 without ACL"
+                aws s3 cp index.html s3://$S3_BUCKET/index.html
                 '''
             }
         }
