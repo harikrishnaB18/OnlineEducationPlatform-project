@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Educational Platform - Inspired by 1decision</title>
+  <title>EduPlatform - Empower Learning</title>
   <style>
-    /* Reset & base */
+    /* Base & reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -17,33 +17,39 @@
       background: #f9fafb;
       color: #1a1a1a;
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     a {
       color: #0f4c81;
       text-decoration: none;
       cursor: pointer;
+      transition: color 0.3s ease;
     }
     a:hover {
-      text-decoration: underline;
+      color: #1e70b8;
     }
 
+    /* Header */
     header {
       background: #0f4c81;
-      padding: 20px 40px;
-      color: #fff;
+      padding: 15px 40px;
+      color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: 10;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-    header .logo {
+    .logo {
       font-size: 1.8rem;
-      font-weight: bold;
-      letter-spacing: 2px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      user-select: none;
     }
     nav a {
       margin-left: 20px;
@@ -52,129 +58,328 @@
       border-radius: 4px;
       transition: background-color 0.3s ease;
     }
-    nav a.active, nav a:hover {
+    nav a.active,
+    nav a:hover {
       background-color: #1e70b8;
     }
 
+    /* Hero Section */
     .hero {
       background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80') no-repeat center/cover;
-      height: 400px;
+      height: 450px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
       color: white;
       text-align: center;
       padding: 0 20px;
-      margin-top: 80px; /* for fixed header */
+      margin-top: 70px; /* for fixed header */
       position: relative;
       overflow: hidden;
     }
     .hero h1 {
       font-size: 3rem;
-      max-width: 800px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      max-width: 900px;
+      text-shadow: 3px 3px 8px rgba(0,0,0,0.75);
+      margin-bottom: 20px;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 1s forwards 0.3s;
     }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards 0.6s;
+    }
+    .hero .btn-primary {
+      margin-top: 30px;
+      background-color: #1e70b8;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(30,112,184,0.5);
+      transition: background-color 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards 0.9s;
+    }
+    .hero .btn-primary:hover {
+      background-color: #134f7a;
+    }
 
+    /* Main container */
     main {
-      max-width: 1000px;
-      margin: 40px auto 80px;
+      flex-grow: 1;
+      max-width: 1100px;
+      margin: 50px auto 80px;
       padding: 0 20px;
     }
     section {
-      margin-bottom: 60px;
+      margin-bottom: 70px;
       opacity: 0;
       transform: translateY(40px);
-      transition: all 0.6s ease-out;
+      transition: all 0.7s ease-out;
     }
     section.visible {
       opacity: 1;
       transform: translateY(0);
     }
     section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 2.2rem;
+      margin-bottom: 24px;
       color: #0f4c81;
+      border-bottom: 3px solid #1e70b8;
+      display: inline-block;
+      padding-bottom: 6px;
     }
     section p {
       font-size: 1.1rem;
       color: #333;
-      max-width: 800px;
+      max-width: 850px;
+      margin-bottom: 30px;
+      line-height: 1.5;
     }
 
+    /* Features Cards */
     .features {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 24px;
       justify-content: space-between;
     }
     .feature {
       background: white;
-      flex: 1 1 280px;
+      flex: 1 1 300px;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
       transition: box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
     .feature:hover {
-      box-shadow: 0 5px 15px rgb(0 0 0 / 0.15);
+      box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
     }
-    .feature h3 {
-      margin-bottom: 15px;
-      color: #0f4c81;
-    }
-
     .feature img {
       width: 100%;
-      border-radius: 6px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
       margin-bottom: 15px;
     }
+    .feature h3 {
+      margin-bottom: 12px;
+      color: #0f4c81;
+      font-size: 1.4rem;
+    }
+    .feature p {
+      flex-grow: 1;
+      font-size: 1rem;
+      color: #444;
+    }
 
-    .video-container {
-      max-width: 800px;
-      margin: 20px auto;
-      border-radius: 8px;
+    /* Courses Section */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .course-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgb(0 0 0 / 0.1);
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease;
     }
-    .video-container iframe {
+    .course-card:hover {
+      box-shadow: 0 8px 30px rgb(0 0 0 / 0.2);
+    }
+    .course-card img {
       width: 100%;
-      height: 450px;
+      height: 180px;
+      object-fit: cover;
+    }
+    .course-content {
+      padding: 18px 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .course-content h4 {
+      margin-bottom: 10px;
+      color: #0f4c81;
+    }
+    .course-content p {
+      flex-grow: 1;
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .btn-enroll {
+      align-self: flex-start;
+      background-color: #1e70b8;
       border: none;
-    }
-
-    footer {
-      background: #0f4c81;
       color: white;
+      padding: 10px 18px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn-enroll:hover {
+      background-color: #134f7a;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .testimonial {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 25px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.1);
       text-align: center;
-      padding: 15px 20px;
-      margin-top: 60px;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #444;
+      display: none;
+    }
+    .testimonial.active {
+      display: block;
+      animation: fadeInUp 0.7s ease forwards;
+    }
+    .testimonial strong {
+      display: block;
+      margin-top: 18px;
+      font-style: normal;
+      color: #0f4c81;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .testimonial-nav {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .testimonial-nav button {
+      background-color: #1e70b8;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      margin: 0 6px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .testimonial-nav button:hover {
+      background-color: #134f7a;
     }
 
-    @media (max-width: 700px) {
-      .features {
-        flex-direction: column;
-      }
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav a {
-        margin-left: 0;
-        margin-right: 15px;
-        margin-bottom: 8px;
-      }
-      .video-container iframe {
-        height: 250px;
-      }
+    /* FAQ Accordion */
+    .faq-item {
+      margin-bottom: 12px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+    }
+    .faq-question {
+      cursor: pointer;
+      padding: 16px 20px;
+      font-weight: 600;
+      color: #0f4c81;
+      position: relative;
+      user-select: none;
+    }
+    .faq-question::after {
+      content: "+";
+      position: absolute;
+      right: 20px;
+      font-size: 24px;
+      line-height: 1;
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-question::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.5;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 250px;
+      padding: 12px 20px 18px;
     }
 
+    /* Footer */
+    footer {
+      background-color: #0f4c81;
+      color: white;
+      padding: 25px 40px;
+      text-align: center;
+      user-select: none;
+    }
+    footer p {
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .social-links a {
+      margin: 0 12px;
+      color: white;
+      font-size: 1.3rem;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+    .social-links a:hover {
+      color: #1e70b8;
+    }
+
+    /* Animations */
     @keyframes fadeInUp {
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      nav a {
+        margin-left: 12px;
+        font-size: 0.9rem;
+      }
+      main {
+        margin: 50px 15px 80px;
       }
     }
   </style>
@@ -184,89 +389,170 @@
 <header>
   <div class="logo">EduPlatform</div>
   <nav>
-    <a href="#home" class="nav-link active">Home</a>
-    <a href="#features" class="nav-link">Features</a>
-    <a href="#video" class="nav-link">Demo Video</a>
-    <a href="#contact" class="nav-link">Contact</a>
+    <a href="#features" class="active">Features</a>
+    <a href="#courses">Courses</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<section class="hero" id="home">
-  <h1>Empowering Educators & Learners with Interactive Tools</h1>
+<section class="hero" id="hero">
+  <h1>Unlock Your Potential with Expert-Led Courses</h1>
+  <p>Learn anytime, anywhere. Join thousands of learners on EduPlatform and transform your career.</p>
+  <button class="btn-primary" onclick="location.href='#courses'">Explore Courses</button>
 </section>
 
 <main>
   <section id="features">
-    <h2>Why Choose Our Platform?</h2>
-    <p>
-      We provide a comprehensive solution for schools and educators to deliver
-      interactive lessons, quizzes, and track student progress seamlessly.
-    </p>
-
+    <h2>Why Choose EduPlatform?</h2>
     <div class="features">
       <div class="feature">
-        <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=600&q=80" alt="Interactive Quizzes"/>
-        <h3>Interactive Quizzes</h3>
-        <p>Create dynamic quizzes that adapt to your students’ learning pace.</p>
+        <img src="https://images.unsplash.com/photo-1581091870620-70a87e9c3886?auto=format&fit=crop&w=400&q=60" alt="Expert Instructors" />
+        <h3>Expert Instructors</h3>
+        <p>Learn from industry leaders and top university professors who bring real-world experience.</p>
       </div>
       <div class="feature">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Analytics Dashboard"/>
-        <h3>Real-Time Analytics</h3>
-        <p>Track engagement and progress with powerful dashboards.</p>
+        <img src="https://images.unsplash.com/photo-1596495577886-d920f1e70f17?auto=format&fit=crop&w=400&q=60" alt="Flexible Learning" />
+        <h3>Flexible Learning</h3>
+        <p>Access courses anytime, from any device, at your own pace to fit your busy schedule.</p>
       </div>
       <div class="feature">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Cloud Access"/>
-        <h3>Cloud-Based Access</h3>
-        <p>Access your learning materials anytime, anywhere from any device.</p>
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=400&q=60" alt="Certification" />
+        <h3>Certification</h3>
+        <p>Earn certificates to showcase your skills and boost your resume and career opportunities.</p>
       </div>
     </div>
   </section>
 
-  <section id="video">
-    <h2>See Our Platform in Action</h2>
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Demo Video"></iframe>
+  <section id="courses">
+    <h2>Our Popular Courses</h2>
+    <div class="courses-grid">
+      <div class="course-card">
+        <img src="https://images.unsplash.com/photo-1581090700227-cd69fca6a57f?auto=format&fit=crop&w=400&q=60" alt="Fullstack Web Development" />
+        <div class="course-content">
+          <h4>Fullstack Web Development</h4>
+          <p>Master front-end and back-end technologies to build responsive, scalable web applications.</p>
+          <button class="btn-enroll">Enroll Now</button>
+        </div>
+      </div>
+      <div class="course-card">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=60" alt="Data Science & ML" />
+        <div class="course-content">
+          <h4>Data Science & Machine Learning</h4>
+          <p>Analyze data and build predictive models using Python, R, and cutting-edge ML techniques.</p>
+          <button class="btn-enroll">Enroll Now</button>
+        </div>
+      </div>
+      <div class="course-card">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=60" alt="Cloud Computing" />
+        <div class="course-content">
+          <h4>Cloud Computing with AWS</h4>
+          <p>Learn to design, deploy, and manage applications on the world's leading cloud platform.</p>
+          <button class="btn-enroll">Enroll Now</button>
+        </div>
+      </div>
+      <div class="course-card">
+        <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=400&q=60" alt="Cybersecurity" />
+        <div class="course-content">
+          <h4>Cybersecurity Fundamentals</h4>
+          <p>Protect systems and networks by understanding security principles and best practices.</p>
+          <button class="btn-enroll">Enroll Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>What Our Learners Say</h2>
+    <div class="testimonials">
+      <div class="testimonial active">
+        "EduPlatform's Fullstack Web Development course gave me the skills I needed to land my dream job."
+        <strong>- Priya S.</strong>
+      </div>
+      <div class="testimonial">
+        "The flexible schedule and hands-on projects helped me learn data science without quitting my job."
+        <strong>- Rahul M.</strong>
+      </div>
+      <div class="testimonial">
+        "The instructors are amazing and always available for questions. Highly recommend their AWS course."
+        <strong>- Ananya K.</strong>
+      </div>
+    </div>
+    <div class="testimonial-nav">
+      <button onclick="showTestimonial(0)">1</button>
+      <button onclick="showTestimonial(1)">2</button>
+      <button onclick="showTestimonial(2)">3</button>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">How do I enroll in a course?</div>
+      <div class="faq-answer">You can browse courses and click the "Enroll Now" button to get started instantly.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Are the courses self-paced?</div>
+      <div class="faq-answer">Yes, all our courses are designed to be self-paced so you can learn at your convenience.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do you provide certificates?</div>
+      <div class="faq-answer">Absolutely! After completing a course, you will receive a digital certificate to showcase your achievement.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I access courses on mobile?</div>
+      <div class="faq-answer">Yes, our platform is mobile-friendly and you can access your courses on any device.</div>
     </div>
   </section>
 
   <section id="contact">
     <h2>Contact Us</h2>
-    <p>Reach out for a demo or more information at <a href="mailto:info@eduplatform.com">info@eduplatform.com</a>.</p>
+    <p>Questions? Suggestions? We'd love to hear from you. Reach out anytime via email or social media.</p>
+    <p>Email: <a href="mailto:support@eduplatform.com">support@eduplatform.com</a></p>
   </section>
 </main>
 
 <footer>
-  &copy; 2025 EduPlatform. All rights reserved.
+  <p>© 2025 EduPlatform. All rights reserved.</p>
+  <div class="social-links">
+    <a href="#" aria-label="Facebook" title="Facebook">&#x1F426;</a>
+    <a href="#" aria-label="Twitter" title="Twitter">&#x1F426;</a>
+    <a href="#" aria-label="LinkedIn" title="LinkedIn">&#x1F426;</a>
+    <a href="#" aria-label="Instagram" title="Instagram">&#x1F426;</a>
+  </div>
 </footer>
 
 <script>
-  // Smooth scrolling and active nav link highlighting
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('nav a');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
-
-    sections.forEach(section => {
-      if (scrollPos >= section.offsetTop - 80) {
-        current = section.getAttribute('id');
-        section.classList.add('visible');
-      } else {
-        section.classList.remove('visible');
-      }
+  // Show testimonial by index
+  const testimonials = document.querySelectorAll('.testimonial');
+  function showTestimonial(idx) {
+    testimonials.forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
     });
+  }
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
+  // FAQ Accordion
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      item.classList.toggle('open');
     });
   });
 
-  // For initial load
-  window.dispatchEvent(new Event('scroll'));
+  // Scroll animation for sections
+  function revealSections() {
+    const sections = document.querySelectorAll('main section');
+    const triggerBottom = window.innerHeight * 0.85;
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if(top < triggerBottom) {
+        section.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', revealSections);
+  window.addEventListener('load', revealSections);
 </script>
 
 </body>
